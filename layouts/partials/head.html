@@ -7,11 +7,19 @@
   <meta name="keywords" content="{{ site.Params.keywords }}">
   {{ "<!-- mobile responsive meta -->" | safeHTML}}
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  <!-- theme meta -->
+  <meta name="theme-name" content="bookworm-light" />
 
   <!-- favicon -->
   {{ partialCached "favicon" . }}
 
   {{ "<!-- CSS Plugins -->" | safeHTML}}
   {{ partialCached "style.html" . }}
-
+  <!-- google analytics -->
+  {{ if hasPrefix .Site.GoogleAnalytics "G-" -}}
+    {{ template "_internal/google_analytics.html" . -}}
+  {{ else -}}
+    {{ template "_internal/google_analytics_async.html" . -}}
+  {{ end -}}
 </head>
